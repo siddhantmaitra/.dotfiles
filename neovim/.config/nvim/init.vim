@@ -12,8 +12,8 @@ call plug#end()
 syntax on
 
 "Theme
-colo one-monokai
-colo "gruvbox
+"colo one-monokai
+colo gruvbox
 let g:lightline={ 'colorscheme':'wombat'}
 set termguicolors
 
