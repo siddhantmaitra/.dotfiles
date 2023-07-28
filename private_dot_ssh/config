@@ -1,0 +1,18 @@
+Host *
+  AddKeysToAgent yes
+
+Host github.com
+    User siddhantmaitra
+    IdentityFile ~/.ssh/archbox_gh
+    # IdentityFile ~/.ssh/id_wsl2_gh
+Host oci-01
+    HostName 129.154.237.57
+    User ubuntu
+    IdentityFile ~/.ssh/oci_sm
+
+
+Host oci-02
+    HostName 152.67.2.32
+    User ubuntu
+    IdentityFile ~/.ssh/oci_sm
+

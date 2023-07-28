@@ -1,0 +1,7 @@
+[user]
+	name = Siddhant Maitra
+	email = smaitra.dev@gmail.com
+[init]
+	defaultBranch = main
+[core]
+	editor = nvim
