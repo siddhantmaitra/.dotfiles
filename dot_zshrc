@@ -68,9 +68,18 @@ export PATH=$PATH:~/.local/bin/
 export VISUAL=nvim
 export EDITOR="$EDITOR"
 
+## XDG paths
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_STATE_HOME=$HOME/.local/state
+
+## GOPATH
+export GOPATH="$XDG_DATA_HOME"/go
+
+
 #------------------------------------------------------------
 ## Evals 
 #------------------------------------------------------------
 eval "$(direnv hook zsh)"
 eval "$(fnm env --use-on-cd)"
-
