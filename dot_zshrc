@@ -1,0 +1,76 @@
+#
+# ~/.zshrc
+#
+
+autoload -U colors && colors
+PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+#PS1='[%F{green}%n@%m %F{blue}%1~%F{green}%f] $ '
+
+# History in cache directory:
+HISTSIZE=10000               #How many lines of history to keep in memory
+HISTFILE=~/.cache/zsh/zsh_history     #Where to save history to disk
+SAVEHIST=10000               #Number of history entries to save to disk
+#HISTDUP=erase               #Erase duplicates in the history file
+setopt    appendhistory     #Append history to the history file (no overwriting)
+setopt    sharehistory      #Share history across terminals
+
+# Basic auto/tab complete:
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)		# Include hidden files.
+
+
+# Function to open files:
+_open_files_for_editing() {
+    # Open any given document file(s) for editing (or just viewing).
+    # Note1:
+    #    - Do not use for executable files!
+    # Note2:
+    #    - Uses 'mime' bindings, so you may need to use
+    #      e.g. a file manager to make proper file bindings.
+
+    if [ -x /usr/bin/exo-open ] ; then
+        echo "exo-open $@" >&2
+        setsid exo-open "$@" >& /dev/null
+        return
+    fi
+    if [ -x /usr/bin/xdg-open ] ; then
+        for file in "$@" ; do
+            echo "xdg-open $file" >&2
+            setsid xdg-open "$file" >& /dev/null
+        done
+        return
+    fi
+
+    echo "$FUNCNAME: package 'xdg-utils' or 'exo' is required." >&2
+}
+
+#------------------------------------------------------------
+## Aliases
+#------------------------------------------------------------
+alias ef='_open_files_for_editing'     # 'ef' opens given file(s) for editing
+alias pacdiff=eos-pacdiff
+
+## listing aliases:
+alias ls='ls --color=auto'
+alias ll='ls -lav --ignore=..'   # show long listing of all except ".."
+alias l='ls -lav --ignore=.?*'   # show long listing but no hidden dotfiles except "."
+
+## login to vagrant:
+alias kvs="vagrant ssh-config > vagrant-ssh && kitty +kitten ssh -F vagrant-ssh default"
+
+#------------------------------------------------------------
+## Exports 
+#------------------------------------------------------------
+export PATH=$PATH:~/.local/bin/
+export VISUAL=nvim
+export EDITOR="$EDITOR"
+
+#------------------------------------------------------------
+## Evals 
+#------------------------------------------------------------
+eval "$(direnv hook zsh)"
+eval "$(fnm env --use-on-cd)"
+
