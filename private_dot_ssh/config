@@ -16,3 +16,7 @@ Host oci-02
     User ubuntu
     IdentityFile ~/.ssh/oci_sm
 
+Host ubhome01 
+    HostName 192.168.29.124
+    User sid
+    IdentityFile ~/.ssh/id_local
