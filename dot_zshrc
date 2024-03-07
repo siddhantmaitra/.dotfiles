@@ -61,7 +61,7 @@ alias l='ls -lav --ignore=.?*'   # show long listing but no hidden dotfiles exce
 
 ## login to vagrant:
 alias kvs="vagrant ssh-config > vagrant-ssh && kitty +kitten ssh -F vagrant-ssh default"
-
+alias kssh="kitten ssh"
 #------------------------------------------------------------
 ## Exports 
 #------------------------------------------------------------
@@ -83,4 +83,3 @@ export GOPATH="$XDG_DATA_HOME"/go
 ## Evals 
 #------------------------------------------------------------
 eval "$(direnv hook zsh)"
-eval "$(/home/sid/.local/bin/mise activate zsh)"
