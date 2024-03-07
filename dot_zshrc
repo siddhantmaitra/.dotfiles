@@ -67,7 +67,7 @@ alias kvs="vagrant ssh-config > vagrant-ssh && kitty +kitten ssh -F vagrant-ssh 
 #------------------------------------------------------------
 export PATH=$PATH:~/.local/bin/
 export VISUAL=nvim
-export EDITOR="$EDITOR"
+export EDITOR=nvim
 
 ## XDG paths
 export XDG_DATA_HOME=$HOME/.local/share
@@ -83,4 +83,4 @@ export GOPATH="$XDG_DATA_HOME"/go
 ## Evals 
 #------------------------------------------------------------
 eval "$(direnv hook zsh)"
-eval "$(fnm env --use-on-cd)"
+eval "$(/home/sid/.local/bin/mise activate zsh)"
