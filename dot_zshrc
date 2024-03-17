@@ -3,8 +3,9 @@
 #
 
 autoload -U colors && colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-#PS1='[%F{green}%n@%m %F{blue}%1~%F{green}%f] $ '
+#PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+
+PS1='[%F{green}%n@%m %F{blue}%~%F{green}%f] $ '
 
 # History in cache directory:
 HISTSIZE=10000               #How many lines of history to keep in memory
@@ -83,3 +84,19 @@ export GOPATH="$XDG_DATA_HOME"/go
 ## Evals 
 #------------------------------------------------------------
 eval "$(direnv hook zsh)"
+eval "$(fnm env --use-on-cd)"
+
+#------------------------------------------------------------
+## Functions 
+#------------------------------------------------------------
+function fd() {
+    git add -A
+    git commit -m $1
+    git push
+}
+
+function fds() {
+    git add -A
+    git commit -m "fastcommit"
+    git push
+}
